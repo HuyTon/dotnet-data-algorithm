@@ -1,4 +1,6 @@
-﻿class Program
+﻿using TreeTriversal;
+
+class Program
 {
     public static void Main(string[] args)
     {
@@ -28,17 +30,56 @@
         {
             Console.WriteLine(transaction);
         }
+        // Date: 4/1/2024 12:00:00 AM, Quantity: 10, Amount: 100
 
         Console.WriteLine("\nTransaction only in destination:");
         foreach (var transaction in onlyInDestinationTransactions)
         {
             Console.WriteLine(transaction);
         }
+        // Date: 4/4/2024 12:00:00 AM, Quantity: 40, Amount: 400 
 
         Console.WriteLine("\nTransaction in both of transactions:");
         foreach (var transaction in inBothTransactions)
         {
             Console.WriteLine(transaction);
         }
+        // Date: 4/2/2024 12:00:00 AM, Quantity: 20, Amount: 200 
+        // Date: 4/3/2024 12:00:00 AM, Quantity: 30, Amount: 300 
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** LinkedList ***");
+
+        LinkedList linkedList = new();
+        linkedList.Insert(1);
+        linkedList.Insert(2);
+        linkedList.Insert(3);
+        linkedList.Insert(4);
+        linkedList.Insert(5);
+
+        linkedList.Display(); // 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Searching on a Binary Tree ***");
+
+        BinaryTree binaryTree = new();
+        binaryTree.FindPath('d'); // [a, b, d]
+        binaryTree.FindPath('c'); // [a, b, c]
+        binaryTree.FindPath('f'); // [a, e, f]
+        binaryTree.FindPath('g'); // [a, e, g]
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Tree Traversal ***");
+
+        TriversalBinaryTree triversalBinaryTree = new();
+        triversalBinaryTree.Insert(5);
+        triversalBinaryTree.Insert(3);
+        triversalBinaryTree.Insert(1);
+        triversalBinaryTree.Insert(7);
+        triversalBinaryTree.Insert(9);
+        triversalBinaryTree.Insert(8);
+
+        triversalBinaryTree.TraverseTree(); // 1 3 5 7 8 9
+
     }
 }

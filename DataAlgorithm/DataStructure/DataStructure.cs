@@ -8,37 +8,48 @@ Example, the tree structure is as follows:
  / \  / \
  c  d f  g
 */
-using System.Security.Cryptography.X509Certificates;
-
-public class Node(char data)
-{
-    public char Data { get; } = data;
-    public Node? Left { get; set; }
-    public Node? Right { get; set; }
-}
 
 class BinaryTree
 {
-    public Node Root { get; private set; }
+    public TreeNode<char> root;
+
     public BinaryTree()
     {
-        Root = new Node('a')
+        root = new TreeNode<char>('a')
         {
-            Left = new Node('b'),
-            Right = new Node('e'),
+            Left = new TreeNode<char>('b'),
+            Right = new TreeNode<char>('e'),
         };
-        Root.Left.Left = new Node('c');
-        Root.Left.Right = new Node('d');
-        Root.Right.Left = new Node('f');
-        Root.Right.Right = new Node('g');
+        root.Left.Left = new TreeNode<char>('c');
+        root.Left.Right = new TreeNode<char>('d');
+        root.Right.Left = new TreeNode<char>('f');
+        root.Right.Right = new TreeNode<char>('g');
     }
 
     public bool Find(char value)
     {
-        return FindRecursive(Root, value);
+        return FindRecursive(root, value);
     }
 
-    private bool FindRecursive(Node? node, char value)
+    public bool FindPath(char value)
+    {
+        // Expected output:
+        // findPath(root, d) -> [a, b, d] 
+        // findPath(root, c) -> [a, b, c]
+        // findPath(root, f) -> [a, e, f]
+
+        List<char> paths = [];
+
+        bool found = FindPathRecursive(root, value, paths);
+
+        paths.Reverse();
+
+        if (found) DisplayFoundPath(paths);
+
+        return found;
+    }
+
+    private bool FindRecursive(TreeNode<char>? node, char value)
     {
         if (node == null) return false;
 
@@ -46,4 +57,37 @@ class BinaryTree
 
         return FindRecursive(node.Left, value) || FindRecursive(node.Right, value);
     }
+
+    private bool FindPathRecursive(TreeNode<char>? node, char value, List<char> paths)
+    {
+        if (node == null) return false;
+
+        if (node.Data == value)
+        {
+            paths.Add(node.Data);
+
+            return true;
+        }
+
+        var left = FindPathRecursive(node.Left, value, paths);
+        var right = FindPathRecursive(node.Right, value, paths);
+
+        if (left || right)
+        {
+            paths.Add(node.Data);
+        }
+
+        return left || right;
+    }
+
+    private void DisplayFoundPath(List<char> paths)
+    {
+        if (paths != null && paths.Count > 0)
+        {
+            string result = "[" + string.Join(", ", paths) + "]";
+
+            Console.WriteLine(result);
+        }
+    }
+
 }

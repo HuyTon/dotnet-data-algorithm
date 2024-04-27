@@ -81,5 +81,23 @@ class Program
 
         triversalBinaryTree.TraverseTree(); // 1 3 5 7 8 9
 
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Serialize Binary Tree ***");
+
+        TreeNode<char> root = new TreeNode<char>('a');
+        root.Left = new TreeNode<char>('b');
+        root.Right = new TreeNode<char>('c');
+        root.Left.Left = new TreeNode<char>('d');
+        root.Left.Right = new TreeNode<char>('e');
+        root.Right.Right = new TreeNode<char>('f');
+
+        BinaryTreeSerializer<char> serializer = new BinaryTreeSerializer<char>();
+        string serializedTree = serializer.Serialize(root);
+        Console.WriteLine("Serialized Tree: " + serializedTree);
+
+        TreeNode<char>? deserializedRoot = serializer.Deserialize(serializedTree);
+        Console.WriteLine("Deserialized Tree:");
+        root.PrintTree(deserializedRoot);
+
     }
 }

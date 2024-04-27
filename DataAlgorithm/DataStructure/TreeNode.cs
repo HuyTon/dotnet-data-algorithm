@@ -10,4 +10,14 @@ public class TreeNode<T>
         Left = null;
         Right = null;
     }
+
+    public void PrintTree(TreeNode<T>? root)
+    {
+        if (root == null)
+            return;
+
+        Console.WriteLine(root.Data);
+        PrintTree(root.Left);
+        PrintTree(root.Right);
+    }
 }

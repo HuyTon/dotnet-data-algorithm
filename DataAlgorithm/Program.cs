@@ -58,6 +58,12 @@ class Program
         linkedList.Insert(5);
 
         linkedList.Display(); // 1 -> 2 -> 3 -> 4 -> 5 -> null
+        Node? middleItem = linkedList.FindMiddleElementOfList();
+        if (middleItem != null)
+        {
+            Console.WriteLine("- Middle item of linked list -");
+            Console.WriteLine(middleItem.Data);
+        }
 
         Console.WriteLine("\n\r");
         Console.WriteLine("*** Searching on a Binary Tree ***");
@@ -99,5 +105,63 @@ class Program
         Console.WriteLine("Deserialized Tree:");
         root.PrintTree(deserializedRoot);
 
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Find Common Shortest Ancestor Given 2 Nodes ***");
+        TreeNode<int> root2 = new TreeNode<int>(1);
+        root2.Left = new TreeNode<int>(2);
+        root2.Right = new TreeNode<int>(3);
+        root2.Left.Left = new TreeNode<int>(4);
+        root2.Left.Right = new TreeNode<int>(5);
+        root2.Right.Left = new TreeNode<int>(6);
+        root2.Right.Right = new TreeNode<int>(7);
+
+        // Nodes to find the common ancestor for
+        TreeNode<int> node1 = root2.Left.Left;   // Node with value 4
+        TreeNode<int> node2 = root2.Right.Left;  // Node with value 6
+        TreeNode<int> node3 = root2.Left.Left;   // Node with value 4
+        TreeNode<int> node4 = root2.Left.Right;  // Node with value 5
+        TreeNode<int> node5 = root2.Right.Left;   // Node with value 6
+        TreeNode<int> node6 = root2.Right.Right;  // Node with value 7
+
+        TreeNode<int>? commonAncestor = TreeNode<int>.FindCommonAncestor(root2, node1, node2);
+        Console.WriteLine($"Common ancestor: {commonAncestor?.Data}"); // Output: Common ancestor: 1
+
+        commonAncestor = TreeNode<int>.FindCommonAncestor(root2, node3, node4);
+        Console.WriteLine($"Common ancestor: {commonAncestor?.Data}"); // Output: Common ancestor: 2
+
+        commonAncestor = TreeNode<int>.FindCommonAncestor(root2, node5, node6);
+        Console.WriteLine($"Common ancestor: {commonAncestor?.Data}"); // Output: Common ancestor: 3
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Array Processing ***");
+        ArrayProcessing.MergeWithLinq();
+        ArrayProcessing.MergeWithArrayCopy();
+        ArrayProcessing.MergeSortedArrays();
+        ArrayProcessing.RemoveDuplicatedItems();
+        ArrayProcessing.RemoveDuplicatedItemsManually();
+        ArrayProcessing.CountSubarrays();
+        ArrayProcessing.FindMedianOfSortedArrays();
+        ArrayProcessing.FindSecondHighest();
+        ArrayProcessing.FindDuplicates();
+        ArrayProcessing.RemoveRepeatedNumbersWithLinq();
+        ArrayProcessing.TestFindMissingInteger();
+        ArrayProcessing.TestFindMissingIntegerOptimize();
+        ArrayProcessing.TestHasNValues();
+        ArrayProcessing.TestEquivalentArrays();
+        ArrayProcessing.FindMaxNumbers();
+        ArrayProcessing.TestOddEvenNumbers();
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** String Processing ***");
+        StringProcessing.ReverseString();
+        StringProcessing.CountVowels();
+        StringProcessing.CountVowelsOptimize();
+
+        Console.WriteLine("\n\r");
+        Console.WriteLine("*** Arithmetic Operator ***");
+        Arithmetic.SwapVariables();
+        Arithmetic.SwapVariablesUseBitwiseXOR();
+        Arithmetic.FibonacciSeries();
+        Arithmetic.MergeSort();
     }
 }

@@ -43,6 +43,22 @@ public class LinkedList
 
         Console.WriteLine("null"); // Write the tail of linked list is always null
     }
+
+    public Node? FindMiddleElementOfList()
+    {
+        if (head == null) return null;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.Next != null)
+        {
+            slow = slow.Next;
+            fast = fast.Next.Next;
+        }
+
+        return slow;
+    }
 }
 
 public class StackAlgorithm

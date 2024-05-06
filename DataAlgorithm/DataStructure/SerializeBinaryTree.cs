@@ -17,9 +17,9 @@ public class BinaryTreeSerializer<T>
             return;
         }
 
-        sb.Append(node.Data.ToString() + ",");
-        SerializeHelper(node.Left, sb);
-        SerializeHelper(node.Right, sb);
+        sb.Append(node?.Data?.ToString() + ",");
+        SerializeHelper(node?.Left, sb);
+        SerializeHelper(node?.Right, sb);
     }
 
     public TreeNode<T>? Deserialize(string data)

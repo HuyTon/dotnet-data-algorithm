@@ -154,4 +154,40 @@ public class Arithmetic
             }
         }
     }
+
+    /// <summary>
+    /// Given a list of number, find all its prime factor and use those prime factor to flip the blubs. 
+    /// A factor that is a prime number.
+    /// In other words: any of the prime numbers that can be multiplied to give the original number.
+    /// </summary>
+    /// <param name="number"></param>
+    /// <returns></returns>
+    static List<int> FindPrimeFactors(int number)
+    {
+        List<int> primeFactors = new List<int>();
+
+        // Find all 2 factors first
+        while (number % 2 == 0) // 10 % 2 | 9 % 2
+        {
+            primeFactors.Add(2); // primeFactors = [2]
+            number /= 2; // number = 10 /2 = 5
+        }
+
+        // Find other prime factors
+        for (int i = 3; i <= Math.Sqrt(number); i += 2)
+        {
+            while (number % i == 0) // 9 % 3 = 0
+            {
+                primeFactors.Add(i); // primeFactors = [3]
+                number /= i; // 9 / 3 = 3
+            }
+        }
+
+        if (number > 2) // 5 > 2
+        {
+            primeFactors.Add(number); // primeFactors = [2, 5] | [3, 3]
+        }
+
+        return primeFactors;
+    }
 }

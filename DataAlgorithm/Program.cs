@@ -4,6 +4,11 @@ class Program
 {
     public static void Main(string[] args)
     {
+        LinqTutorial linqTutorial = new LinqTutorial();
+        linqTutorial.Max();
+
+        return;
+
         Console.WriteLine("Welcome to the Data Processing Algorithms and Transaction Management Repository!");
         Console.WriteLine("This repository provides a comprehensive toolkit for processing and managing transactions efficiently.");
         Console.WriteLine("Feel free to explore the features, components, and usage instructions in the README.md file.");

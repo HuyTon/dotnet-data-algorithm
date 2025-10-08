@@ -48,12 +48,12 @@ public class LinkedList
     {
         if (head == null) return null;
 
-        Node slow = head;
-        Node fast = head;
+        Node? slow = head;
+        Node? fast = head;
 
         while (fast != null && fast.Next != null)
         {
-            slow = slow.Next;
+            slow = slow?.Next;
             fast = fast.Next.Next;
         }
 

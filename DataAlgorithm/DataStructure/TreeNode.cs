@@ -25,10 +25,7 @@ public class TreeNode<T>
     {
         if (t1 == null && t2 == null) return true;
 
-        if ((t1 == null && t2 != null) || (t1 != null && t2 == null))
-        {
-            return false;
-        }
+        if (t1 == null || t2 == null) return false;
 
         // if (!t1.Data.Equals(t2.Data)) return false;
         if (!EqualityComparer<T>.Default.Equals(t1.Data, t2.Data)) return false;

@@ -24,11 +24,11 @@ public class Car
 
 public class CarOperation
 {
-    public Car MostExpensiveCar(List<Car> cars)
+    public Car? MostExpensiveCar(List<Car> cars)
     {
         return cars.OrderByDescending(c => c.Price).FirstOrDefault();
     }
-    public Car MostCheapestCar(List<Car> cars)
+    public Car? MostCheapestCar(List<Car> cars)
     {
         return cars.OrderBy(c => c.Price).FirstOrDefault();
     }
@@ -38,12 +38,16 @@ public class CarOperation
         return cars.Any() ? cars.Average(c => c.Price) : 0;
     }
 
-    public Dictionary<string, Car> MostExpensiveCarByEachBrand(List<Car> cars)
+    public Dictionary<string, Car?> MostExpensiveCarByEachBrand(List<Car> cars)
     {
-        Dictionary<string, Car> mostExpensiveCarsByBrand = cars.GroupBy(c => c.Make)
-        .ToDictionary(g => g.Key, g => g.OrderByDescending(c => c.Price).FirstOrDefault());
+        var mostExpensiveCarsByBrand = cars
+        .GroupBy(c => c.Make)
+        .ToDictionary(g => g.Key, g => g.OrderByDescending(c => c.Price)
+        .FirstOrDefault());
 
         // Sort by brand
-        return mostExpensiveCarsByBrand.OrderBy(pair => pair.Key);
+        return mostExpensiveCarsByBrand
+              .OrderBy(pair => pair.Key)
+              .ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 }
